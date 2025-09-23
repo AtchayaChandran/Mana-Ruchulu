@@ -23,7 +23,7 @@ export default function Login() {
   
 
   return (
-    <div className="py-6">
+    <div className="py-6 mt-[160px]">
       <div className="max-w-md mx-auto px-4">
         <h1 className="text-2xl font-semibold mb-4">Login</h1>
         <form onSubmit={onSubmit} className="space-y-3">

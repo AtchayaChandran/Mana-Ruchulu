@@ -26,7 +26,7 @@ export default function Signup() {
   }
 
   return (
-    <div className="py-6">
+    <div className="py-6 mt-[120px]">
       <div className="max-w-md mx-auto px-4">
         <h1 className="text-2xl font-semibold mb-4">Create Account</h1>
         <form onSubmit={onSubmit} className="space-y-3">
