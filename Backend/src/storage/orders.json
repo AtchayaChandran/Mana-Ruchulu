@@ -1,0 +1,142 @@
+[
+  {
+    "id": "ord_1758619923489",
+    "status": "accepted",
+    "createdAt": 1758619923489,
+    "eta": "30-35 min",
+    "totals": {
+      "subtotal": 355,
+      "gst": 18,
+      "restaurantCharges": 7,
+      "deliveryPartnerFee": 35,
+      "platformFee": 10,
+      "total": 425
+    },
+    "items": [
+      {
+        "id": "st-3",
+        "name": "Schezwan chicken",
+        "price": 355,
+        "qty": 1,
+        "image": "https://www.kitchensanctuary.com/wp-content/uploads/2021/05/Szechuan-Chicken-Square-FS-18.jpg"
+      }
+    ],
+    "acceptedAt": 1758619926990
+  },
+  {
+    "id": "ord_1758619852011",
+    "status": "accepted",
+    "createdAt": 1758619852011,
+    "eta": "30-35 min",
+    "totals": {
+      "subtotal": 399,
+      "gst": 20,
+      "restaurantCharges": 8,
+      "deliveryPartnerFee": 35,
+      "platformFee": 10,
+      "total": 472
+    },
+    "items": [
+      {
+        "id": "st-2",
+        "name": "Crab Finger",
+        "price": 399,
+        "qty": 1,
+        "image": "https://media.istockphoto.com/id/186144178/photo/claw-legs.jpg?s=612x612&w=0&k=20&c=T9iE6DKlxkgkaHLAoZIyzINN7DFlWJvY-uBusXYUIeQ="
+      }
+    ],
+    "acceptedAt": 1758619855471
+  },
+  {
+    "id": "ord_1758619798291",
+    "status": "accepted",
+    "createdAt": 1758619798291,
+    "eta": "30-35 min",
+    "totals": {
+      "subtotal": 1028,
+      "gst": 51,
+      "restaurantCharges": 21,
+      "deliveryPartnerFee": 35,
+      "platformFee": 10,
+      "total": 1145
+    },
+    "items": [
+      {
+        "id": "st-2",
+        "name": "Crab Finger",
+        "price": 399,
+        "qty": 1,
+        "image": "https://media.istockphoto.com/id/186144178/photo/claw-legs.jpg?s=612x612&w=0&k=20&c=T9iE6DKlxkgkaHLAoZIyzINN7DFlWJvY-uBusXYUIeQ="
+      },
+      {
+        "id": "st-5",
+        "name": "Chicken LolliPop",
+        "price": 330,
+        "qty": 1,
+        "image": "https://brightcaterers.com/wp-content/uploads/2021/07/cropped-WhatsApp-Image-2021-07-12-at-5.37.45-AM-9-1.jpeg"
+      },
+      {
+        "id": "st-12",
+        "name": "Spicy Chicken 65",
+        "price": 299,
+        "qty": 1,
+        "image": "https://i.ytimg.com/vi/eLKsu_AynqM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBEbS_8v31zim4Xyqz45zMfMO7AmQ"
+      }
+    ],
+    "acceptedAt": 1758619801715
+  },
+  {
+    "id": "ord_1758619566012",
+    "status": "accepted",
+    "createdAt": 1758619566012,
+    "eta": "30-35 min",
+    "totals": {
+      "subtotal": 3192,
+      "gst": 160,
+      "restaurantCharges": 64,
+      "deliveryPartnerFee": 35,
+      "platformFee": 10,
+      "total": 3461
+    },
+    "items": [
+      {
+        "id": "st-1",
+        "name": "Fish Finger",
+        "price": 399,
+        "qty": 8,
+        "image": "https://www.pizzaxtasy.com/wp-content/uploads/2024/01/Fish-finger.jpg"
+      }
+    ],
+    "acceptedAt": 1758619569435
+  },
+  {
+    "id": "ord_1758619527287",
+    "status": "placed",
+    "createdAt": 1758619527287,
+    "eta": "30-35 min",
+    "totals": {
+      "subtotal": 798,
+      "gst": 40,
+      "restaurantCharges": 16,
+      "deliveryPartnerFee": 35,
+      "platformFee": 10,
+      "total": 899
+    },
+    "items": [
+      {
+        "id": "st-4",
+        "name": "Prawn Fry",
+        "price": 399,
+        "qty": 1,
+        "image": "https://apronandwhisk.com/wp-content/uploads/2020/10/Air-Fried-Prawns-Food-Photography-2.jpg"
+      },
+      {
+        "id": "st-2",
+        "name": "Crab Finger",
+        "price": 399,
+        "qty": 1,
+        "image": "https://media.istockphoto.com/id/186144178/photo/claw-legs.jpg?s=612x612&w=0&k=20&c=T9iE6DKlxkgkaHLAoZIyzINN7DFlWJvY-uBusXYUIeQ="
+      }
+    ]
+  }
+]
