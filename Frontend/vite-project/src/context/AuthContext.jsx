@@ -12,13 +12,18 @@ import {
 
 const AuthContext = createContext(null)
 
+// ✅ Hardcode your backend URL here
+// If your backend routes are actually `/auth/login` instead of `/api/auth/login`
+// just remove `/api` from below.
+const BASE_URL = 'https://mana-ruchulu-backend.onrender.com'
+
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (!auth) {
-      // Fallback: restore session from localStorage token for backend-auth mode
+      // fallback: restore session from localStorage if backend auth mode
       try {
         const raw = localStorage.getItem('mr_backend_user')
         if (raw) setUser(JSON.parse(raw))
@@ -36,60 +41,116 @@ export function AuthProvider({ children }) {
   const value = useMemo(() => ({
     user,
     loading,
-    login: async (email, _password) => {
+
+    // ----------------
+    // LOGIN
+    // ----------------
+    login: async (email, password) => {
       try {
-        if (auth) return await signInWithEmailAndPassword(auth, email, _password)
-        const base = import.meta.env.VITE_API_URL || 'https://mana-ruchulu-backend.onrender.com/'
-        const res = await fetch(`${base}/api/auth/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password: _password }) })
+        if (auth) {
+          return await signInWithEmailAndPassword(auth, email, password)
+        }
+
+        const res = await fetch(`${BASE_URL}/api/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        })
+
         let payload = null
         try { payload = await res.json() } catch {}
+
         if (!res.ok) {
           const msg = payload?.error || payload?.message || `Login failed (${res.status})`
           throw new Error(msg)
         }
-        const backendUser = { email: payload?.user?.email, emailVerified: true, id: payload?.user?.id, displayName: payload?.user?.name }
+
+        const backendUser = {
+          email: payload?.user?.email,
+          emailVerified: true,
+          id: payload?.user?.id,
+          displayName: payload?.user?.name,
+        }
+
         if (payload?.token) localStorage.setItem('mr_backend_token', payload.token)
         localStorage.setItem('mr_backend_user', JSON.stringify(backendUser))
         setUser(backendUser)
+
         return backendUser
       } catch (e) {
-        // Firebase errors already have message; backend errors handled above
         throw e
       }
     },
-    signup: async (email, _password, displayName) => {
+
+    // ----------------
+    // SIGNUP
+    // ----------------
+    signup: async (email, password, displayName) => {
       try {
         if (auth) {
-          const cred = await createUserWithEmailAndPassword(auth, email, _password)
+          const cred = await createUserWithEmailAndPassword(auth, email, password)
           if (displayName) await updateProfile(cred.user, { displayName })
           try { await sendEmailVerification(cred.user) } catch {}
           return cred
         }
-        const base = import.meta.env.VITE_API_URL || 'http://localhost:4000'
-        const res = await fetch(`${base}/api/auth/signup`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, name: displayName, password: _password }) })
+
+        const res = await fetch(`${BASE_URL}/api/auth/signup`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name: displayName, password }),
+        })
+
         let payload = null
         try { payload = await res.json() } catch {}
+
         if (!res.ok) {
           const msg = payload?.error || payload?.message || `Signup failed (${res.status})`
           throw new Error(msg)
         }
-        const backendUser = { email: payload?.user?.email, emailVerified: true, id: payload?.user?.id, displayName }
+
+        const backendUser = {
+          email: payload?.user?.email,
+          emailVerified: true,
+          id: payload?.user?.id,
+          displayName,
+        }
+
         if (payload?.token) localStorage.setItem('mr_backend_token', payload.token)
         localStorage.setItem('mr_backend_user', JSON.stringify(backendUser))
         setUser(backendUser)
+
         return backendUser
       } catch (e) {
         throw e
       }
     },
-    loginWithGoogle: () => (auth && googleProvider) ? signInWithPopup(auth, googleProvider) : Promise.reject(new Error('Google login not configured')),
+
+    // ----------------
+    // GOOGLE LOGIN
+    // ----------------
+    loginWithGoogle: () =>
+      (auth && googleProvider)
+        ? signInWithPopup(auth, googleProvider)
+        : Promise.reject(new Error('Google login not configured')),
+
+    // ----------------
+    // LOGOUT
+    // ----------------
     logout: async () => {
       if (auth) return signOut(auth)
       localStorage.removeItem('mr_backend_user')
       localStorage.removeItem('mr_backend_token')
       setUser(null)
     },
-    resendVerification: () => (auth && auth.currentUser) ? sendEmailVerification(auth.currentUser) : Promise.resolve(),
+
+    // ----------------
+    // RESEND VERIFICATION
+    // ----------------
+    resendVerification: () =>
+      (auth && auth.currentUser)
+        ? sendEmailVerification(auth.currentUser)
+        : Promise.resolve(),
+
   }), [user, loading])
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
@@ -98,5 +159,3 @@ export function AuthProvider({ children }) {
 export function useAuth() {
   return useContext(AuthContext)
 }
-
-
