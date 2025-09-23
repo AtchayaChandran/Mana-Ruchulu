@@ -30,7 +30,7 @@ export default function Cart() {
         totals: { subtotal, gst, restaurantCharges, deliveryPartnerFee, platformFee, total },
         items: orderItems,
       }
-      const base = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+      const base = import.meta.env.VITE_API_URL || ' https://mana-ruchulu-backend.onrender.com'
       let orderId = null
       try {
         const res = await fetch(`${base}/api/orders`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })

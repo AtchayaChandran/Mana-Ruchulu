@@ -28,7 +28,7 @@ export default function Menu() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api/menu` : 'http://localhost:4000/api/menu')
+        const res = await fetch(import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api/menu` : ' https://mana-ruchulu-backend.onrender.com')
         const data = await res.json()
         if (data && Array.isArray(data.categories)) setRemoteMenu(data)
       } catch {}

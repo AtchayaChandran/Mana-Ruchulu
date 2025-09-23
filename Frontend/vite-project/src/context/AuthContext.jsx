@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
     login: async (email, _password) => {
       try {
         if (auth) return await signInWithEmailAndPassword(auth, email, _password)
-        const base = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+        const base = import.meta.env.VITE_API_URL || 'https://mana-ruchulu-backend.onrender.com/'
         const res = await fetch(`${base}/api/auth/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password: _password }) })
         let payload = null
         try { payload = await res.json() } catch {}

@@ -29,7 +29,7 @@ export default function OrderStatus() {
     try {
       const lastId = sessionStorage.getItem('mr_last_order_id')
       if (lastId) {
-        const base = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+        const base = import.meta.env.VITE_API_URL || ' https://mana-ruchulu-backend.onrender.com'
         fetch(`${base}/api/orders/${lastId}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'accepted', acceptedAt: Date.now() }) }).catch(() => {})
         const raw = localStorage.getItem('mr_orders')
         const arr = raw ? JSON.parse(raw) : []
