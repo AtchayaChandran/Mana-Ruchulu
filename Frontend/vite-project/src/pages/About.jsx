@@ -1,4 +1,4 @@
-import AboutImage from "../assets/image/img.png"; // replace with your image path
+import AboutImage from "../assets/image/img.png"; 
 
 export default function About() {
   return (
